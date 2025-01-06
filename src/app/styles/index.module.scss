@@ -1,0 +1,71 @@
+.audio {
+  position: relative;
+  height: 90vh;
+  margin: 10px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  & .recordButton {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: none;
+    box-shadow: inset 0 0 20px #ccc, inset 0 0 2px #000;
+    position: relative;
+    transform: translate(0, -150px);
+    z-index: 1;
+    background-color: #fff; /* Color del botón */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background-color: rgba(255, 0, 0, 0.5); /* Color del círculo */
+      opacity: 0;
+      transition: all 0.3s ease;
+      z-index: -1;
+    }
+
+    &.recording::before {
+      opacity: 1;
+      z-index: -1;
+      animation: circleMove 1s infinite; /* Movimiento del círculo */
+    }
+
+    & .icon {
+      font-size: 2rem;
+    }
+  }
+
+  & .saveAudioButton {
+    position: absolute;
+    transform: translate(0, -220px);
+  }
+
+  & .transcription {
+  position: absolute;
+    width: 90%;
+  }
+
+  @keyframes circleMove {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.4);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+}
+
+  

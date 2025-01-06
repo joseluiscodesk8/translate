@@ -1,0 +1,2 @@
+Vosk API
+Text-to-Speech API (TTS): Para generar voz a partir del texto traducido.
