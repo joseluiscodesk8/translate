@@ -1,7 +1,7 @@
 "use client";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { FaMicrophone, FaMicrophoneSlash } from "react-icons/fa";
 import styles from "../styles/index.module.scss";
 import {
@@ -17,6 +17,14 @@ const AudioCapture = () => {
   const [transcribedText, setTranscribedText] = useState("");
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const recognitionRef = useRef<SpeechRecognition | null>(null);
+
+  useEffect(() => {
+    const isSpeechRecognitionSupported =
+      "SpeechRecognition" in window || "webkitSpeechRecognition" in window;
+    if (!isSpeechRecognitionSupported) {
+      alert("El navegador no soporta la API de SpeechRecognition.");
+    }
+  }, []);
 
   const startRecording = async () => {
     try {
@@ -132,9 +140,7 @@ const AudioCapture = () => {
         </div>
       )}
       <div className={styles.transcription}>
-        <p>
-          {transcribedText}
-        </p>
+        <p>{transcribedText}</p>
       </div>
     </div>
   );
